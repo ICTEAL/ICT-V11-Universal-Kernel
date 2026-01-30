@@ -14,4 +14,5 @@ ICT V11 replaces the Dark Sector (ΛCDM) with a Complexity-Weighted Manifold. [c
 * [cite_start]**AGI Alignment:** Isomorphic grounding in manifold complexity. [cite: 5]
 
 ## Operational Kernel
-See `verification_kernel.py` for the Python implementation of galactic rotation curves without dark matter.
+See `verification_kernel.py` for the Python implementation of galactic rotation curves without dark matter use sim input pip install numpy
+python verification_kernel.py.
