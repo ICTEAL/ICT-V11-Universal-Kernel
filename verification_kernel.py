@@ -7,22 +7,22 @@ def ict_v11_velocity(radius_kpc, visible_mass_solar):
     RHO_CRIT = 1e-22      
     C_INDEX = 1.5         
     
-    # Conversion Factors
     KPC_TO_M = 3.086e19
     MSUN_TO_KG = 1.989e30
     KPC_TO_M3 = (KPC_TO_M)**3
 
-    # 1. NEWTONIAN COMPONENT
+    # 1. NEWTONIAN COMPONENT (Hardware)
     v_newton = np.sqrt((G_GALACTIC * visible_mass_solar) / radius_kpc)
 
     # 2. QUARTIC SCREENING (The Switch)
-    vol_kpc = (4/3) * np.pi * (radius_kpc**3)
+    # This must be isolated to ensure the boost only triggers at low density
+    vol_kpc = (4.0 / 3.0) * np.pi * (radius_kpc**3)
     rho_si = (visible_mass_solar / vol_kpc) * (MSUN_TO_KG / KPC_TO_M3)
     
-    # Corrected Screen logic: 1 / (1 + (rho/rho_crit)^4)
+    # The Screen Equation: 1 / (1 + (rho/rho_crit)^4)
     screen = 1.0 / (1.0 + (rho_si / RHO_CRIT)**4)
 
-    # 3. ICT COMPLEXITY BOOST
+    # 3. ICT COMPLEXITY BOOST (The Software)
     r_meters = radius_kpc * KPC_TO_M
     v_boost_kms = (np.sqrt(L_CONST * C_INDEX * r_meters) / 1000.0) * screen
 
