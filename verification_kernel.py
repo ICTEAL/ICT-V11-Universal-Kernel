@@ -1,4 +1,3 @@
-
 import numpy as np
 
 def ict_v11_velocity(radius_kpc, visible_mass_solar):
