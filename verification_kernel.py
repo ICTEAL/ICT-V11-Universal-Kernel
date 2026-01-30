@@ -15,7 +15,7 @@ def ict_v11_velocity(radius_kpc, visible_mass_solar):
     v_newton = np.sqrt((G_GALACTIC * visible_mass_solar) / radius_kpc)
 
     # 2. QUARTIC SCREENING (The Switch)
-    # Using disk-volume approximation for barred-spirals to trigger at 25kpc
+    # Using disk-volume approximation to trigger at 25kpc
     vol_kpc3 = (4.0 / 3.0) * np.pi * (radius_kpc**3)
     rho_si = (visible_mass_solar / vol_kpc3) * (MSUN_TO_KG / KPC_TO_M3)
     
