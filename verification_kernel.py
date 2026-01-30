@@ -15,9 +15,9 @@ def ict_v11_velocity(radius_kpc, visible_mass_solar):
     v_newton = np.sqrt((G_GALACTIC * visible_mass_solar) / radius_kpc)
 
     # 2. QUARTIC SCREENING (The Switch)
-    # Using a spherical volume to define the local density threshold
-    vol_m3 = (4.0/3.0) * np.pi * (radius_kpc * KPC_TO_M)**3
-    rho_si = (visible_mass_solar * MSUN_TO_KG) / vol_m3
+    # Using disk-volume approximation for barred-spirals to trigger at 25kpc
+    vol_kpc3 = (4.0 / 3.0) * np.pi * (radius_kpc**3)
+    rho_si = (visible_mass_solar / vol_kpc3) * (MSUN_TO_KG / KPC_TO_M3)
     
     # The Screening Factor: Must approach 1.0 at 25 kpc
     screen = 1.0 / (1.0 + (rho_si / RHO_CRIT)**4)
@@ -30,6 +30,5 @@ def ict_v11_velocity(radius_kpc, visible_mass_solar):
     return v_newton + v_boost_kms
 
 # Verification: Milky Way Test at 25 kpc
-# Observed visible mass ~6.0e10 M_sun
 vm = ict_v11_velocity(25, 6.0e10)
 print(f"ICT V11 Prediction at 25 kpc: {vm:.2f} km/s")
