@@ -1,5 +1,5 @@
 # Information Curvature Theory (ICT) V11
-**A Unified Computational Kernel for Gravity, Energy, and Complexity**
+**A Unified Computational Kernel for Gravity, Energy, and Complexity by EthanAndrewLang**
 
 ## Abstract
 ICT V11 replaces the Dark Sector (ΛCDM) with a Complexity-Weighted Manifold. [cite_start]By introducing a **Quartic Screening Mechanism ($x^4$)** and a **Stagnant Core** solution, this framework resolves the Hubble Tension, the Information Paradox, and the Early Galaxy Maturity problem (JWST z>14). [cite: 1, 2]
