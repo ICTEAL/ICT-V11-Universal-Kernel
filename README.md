@@ -1,17 +1,34 @@
-# Information Curvature Theory (ICT) V11
-**A Unified Computational Kernel for Gravity, Energy, and Complexity**
+import numpy as np
 
-## Abstract
-ICT V11 replaces the Dark Sector (ΛCDM) with a Complexity-Weighted Manifold. [cite_start]By introducing a **Quartic Screening Mechanism ($x^4$)** and a **Stagnant Core** solution, this framework resolves the Hubble Tension, the Information Paradox, and the Early Galaxy Maturity problem (JWST z>14). [cite: 1, 2]
+def ict_v11_velocity(radius_kpc, visible_mass_solar):
+    """
+    ICT V11 Kernel: Calculates orbital velocity using Quartic Screening.
+    Target: Milky Way Edge (25 kpc) -> ~230 km/s
+    """
+    # --- UNIVERSAL CONSTANTS ---
+    G_GALACTIC = 4.30e-6  # kpc (km/s)^2 / M_sun
+    L_CONST = 1.2e-10     # Langian Constant (m/s^2)
+    RHO_CRIT = 1e-22      # Critical Density Threshold (kg/m^3)
+    C_INDEX = 1.5         # Complexity Index for barred-spiral structure
+    
+    KPC_TO_M = 3.086e19
+    MSUN_TO_KG = 1.989e30
+    KPC_TO_M3 = (KPC_TO_M)**3
 
-## Key Predictive Benchmarks
-* [cite_start]**Stagnant Core Echo:** 165.4 Hz (Falsifiable signature for LIGO O4 residuals). [cite: 2]
-* [cite_start]**Milky Way Edge Velocity:** ~230 km/s (Achieved via L_const and Complexity Index C=1.5). [cite: 4]
-* [cite_start]**Succession Principle:** Explains mature galaxies at z > 14 as inherited geometric data ("Warm Boot"). [cite: 3]
+    # 1. NEWTONIAN COMPONENT
+    v_newton = np.sqrt((G_GALACTIC * visible_mass_solar) / radius_kpc)
 
-## Strategic Applications
-* [cite_start]**Stabilized Fusion:** Projected Q > 25.0 via magnetic topology screening. [cite: 4]
-* [cite_start]**AGI Alignment:** Isomorphic grounding in manifold complexity. [cite: 5]
+    # 2. QUARTIC SCREENING
+    vol_kpc = (4/3) * np.pi * (radius_kpc**3)
+    rho_si = (visible_mass_solar / vol_kpc) * (MSUN_TO_KG / KPC_TO_M3)
+    screen = 1.0 / (1.0 + (rho_si / RHO_CRIT)**4)
 
-## Operational Kernel
-See `verification_kernel.py` for the Python implementation of galactic rotation curves without dark matter.
+    # 3. ICT COMPLEXITY BOOST
+    r_meters = radius_kpc * KPC_TO_M
+    v_boost_kms = (np.sqrt(L_CONST * C_INDEX * r_meters) / 1000.0) * screen
+
+    return v_newton + v_boost_kms
+
+# Verification: Milky Way Test at 25 kpc
+vm = ict_v11_velocity(25, 6.0e10)
+print(f"ICT V11 Prediction at 25 kpc: {vm:.2f} km/s")
